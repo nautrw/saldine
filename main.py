@@ -132,11 +132,16 @@ def main():
             ask_run_again()
             continue
 
+        if notes_number < 2:
+            print('The number of notes must be more than 2')
+            ask_run_again()
+            continue
+
         add_whole_note_at_end = input(
             'Add whole note at end? \033[90m[Y/n] \033[32m->\033[m '
         ).strip().lower() in ('y', '')
 
-        notes_number -= 1   # Acommodating for the beginner note
+        notes_number -= 1   # Acommodating for the note at the beginning
 
         if add_whole_note_at_end:   # Acommodating for the end note if chosen
             notes_number -= 1
