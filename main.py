@@ -128,7 +128,7 @@ def main():
                 input('How many notes do you want? \033[32m->\033[m ')
             )
         except ValueError:
-            print('The number of notes must be a number')
+            print('The number of notes must be an integer (no decimals!)')
             ask_run_again()
             continue
 
