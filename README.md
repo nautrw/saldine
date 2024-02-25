@@ -1,9 +1,9 @@
 <div style="display:flex; align-items:center;">
-    <img align="left" alt="Saldine Icon" src="https://github.com/nautrw/saldine/assets/160557714/48f1104b-0a95-422a-be77-b9c9d0a961ba" max-width="50%">
+    <img align="left" alt="Saldine Icon" src="https://github.com/nautrw/saldine/assets/160557714/a2730ec3-55df-407e-ab26-761bc6313d1a">
     <p align="right">Saldine is a sheet music generation algorithm for the terminal. It uses probability and rules to preform mathematical equations and generate musical notes for sheet music.
 </div>
 
-<br>
+<br><br><br><br><br>
 
 ## How it works
 The program works in the following steps. Terms such as *steps* and *intervals* will not be explained here.
