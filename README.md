@@ -3,7 +3,7 @@
     <p align="right">Saldine is a sheet music generation algorithm for the terminal. It uses probability and rules to preform mathematical equations and generate musical notes for sheet music.
 </div>
 
-<br><br><br><br><br>
+<br><br><br><br>
 
 ## How it works
 The program works in the following steps. Terms such as *steps* and *intervals* will not be explained here.
