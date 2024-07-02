@@ -1,4 +1,7 @@
-from saldine.saldine import main
+from saldine.algorithm import generate_notes_list
 
-if __name__ == "__main__":
-    main()
+
+# TODO: put program here
+def main():
+    notes_list = generate_notes_list(16, True)
+    print(notes_list)
