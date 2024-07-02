@@ -3,15 +3,11 @@ import random
 NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
 
 # step, unison, third, sixth, fifth, fourth, octave
-INTERVALS = [(1, 50), (0, 25), (3, 11.25), (6, 4.5), (5, 4.5), (4, 2.25)(8, 2.5)]
+INTERVALS = [1, 0, 3, 6, 5, 4, 8]
+INTERVAL_WEIGHTS = [50, 25, 11.25, 4.5, 4.5, 2.25, 2.5]
 
-NOTE_LENGTHS = [
-    ("whole", 2.5),
-    ("half", 12.5),
-    ("dottedhalf", 10),
-    ("quarter", 62.5),
-    ("eighth", 12.5),
-]
+NOTE_LENGTHS = ["whole", "half", "dottedhalf", "quarter", "eighth"]
+NOTE_LENGTH_WEIGHTS = [2.5, 12.5, 10, 62.5, 12.5]
 
 NOTE_COLORS = {
     1: "\033[31m",
@@ -24,23 +20,8 @@ NOTE_COLORS = {
 }
 
 
-def select_with_percentage(data):
-    total_percentage = sum(percentage for _, percentage in data)
-    if total_percentage != 100:
-        raise ValueError(
-            f"Total percentage should sum up to 100. They currently add up to {total_percentage}."
-        )
-
-    random_number = random.randint(1, 100)
-    cumulative_percentage = 0
-    for item, percentage in data:
-        cumulative_percentage += percentage
-        if random_number <= cumulative_percentage:
-            return item
-
-
 def interval(note_number: int, go_down: bool):
-    interval = select_with_percentage(INTERVALS)
+    interval = random.choice(INTERVALS, weights=INTERVAL_WEIGHTS)
 
     interval = -interval if go_down else interval
     note_number += interval
@@ -49,7 +30,7 @@ def interval(note_number: int, go_down: bool):
 
 
 def note_length():
-    return select_with_percentage(NOTE_LENGTHS)
+    return random.choice(NOTE_LENGTHS, weights=NOTE_LENGTH_WEIGHTS)
 
 
 def generate_notes_list(notes_number: int, add_whole_note_at_end: bool):
