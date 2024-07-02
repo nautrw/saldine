@@ -10,16 +10,6 @@ INTERVAL_WEIGHTS = [50, 25, 11.25, 4.5, 4.5, 2.25, 2.5]
 NOTE_LENGTHS = ["whole", "half", "dottedhalf", "quarter", "eighth"]
 NOTE_LENGTH_WEIGHTS = [2.5, 12.5, 10, 62.5, 12.5]
 
-NOTE_COLORS = {
-    1: "\033[31m",
-    2: "\033[32m",
-    3: "\033[33m",
-    4: "\033[34m",
-    5: "\033[35m",
-    6: "\033[36m",
-    7: "\033[37m",
-}
-
 
 def interval(note_number: int, go_down: bool) -> int:
     interval = random.choices(INTERVALS, weights=INTERVAL_WEIGHTS)[0]
