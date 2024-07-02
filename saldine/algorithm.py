@@ -2,11 +2,8 @@ import random
 
 NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
 
-INTERVALS = [("step", 50), ("unison", 25), ("skip", 22.5), ("octave", 2.5)]
-
-SKIP_INTERVALS = [("third", 50), ("sixth", 20), ("fifth", 20), ("fourth", 10)]
-
-DOWN_OR_UP = [("down", 50), ("up", 50)]
+# step, unison, third, sixth, fifth, fourth, octave
+INTERVALS = [(1, 50), (0, 25), (3, 11.25), (6, 4.5), (5, 4.5), (4, 2.25)(8, 2.5)]
 
 NOTE_LENGTHS = [
     ("whole", 2.5),
@@ -42,46 +39,13 @@ def select_with_percentage(data):
             return item
 
 
-def interval(note_number):
-    interval_type = select_with_percentage(INTERVALS)
-    down_or_up = select_with_percentage(DOWN_OR_UP)
+def interval(note_number: int, go_down: bool):
+    interval = select_with_percentage(INTERVALS)
 
-    if interval_type == "step":
-        note_number += 1 if down_or_up == "up" else -1
-    elif interval_type == "unison":
-        pass
-    elif interval_type == "skip":
-        note_number = skip_interval(note_number)
-    elif interval_type == "octave":
-        note_number += 8 if down_or_up == "up" else -8
+    interval = -interval if go_down else interval
+    note_number += interval
 
-    # Limit note number to be less than 7 but no less than 1
-    note_number %= 7
-    if note_number == 0:
-        note_number = 7
-
-    return note_number
-
-
-def skip_interval(note_number):
-    skip_type = select_with_percentage(SKIP_INTERVALS)
-    down_or_up = select_with_percentage(DOWN_OR_UP)
-
-    if skip_type == "third":
-        note_number += 3 if down_or_up == "up" else -3
-    elif skip_type == "sixth":
-        note_number += 6 if down_or_up == "up" else -6
-    elif skip_type == "fifth":
-        note_number += 5 if down_or_up == "up" else -5
-    elif skip_type == "fourth":
-        note_number += 4 if down_or_up == "up" else -4
-
-    # Limit note number to be less than 7 but no less than 1
-    note_number %= 7
-    if note_number == 0:
-        note_number = 7
-
-    return note_number
+    return (note_number % 7) or 7
 
 
 def note_length():
