@@ -1,6 +1,4 @@
 import random
-import signal
-import sys
 
 NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
 
@@ -34,7 +32,7 @@ def select_with_percentage(data):
     if total_percentage != 100:
         raise ValueError(
             f"Total percentage should sum up to 100. They currently add up to {total_percentage}."
-        )  # Make it more intuitive if these problems happen again
+        )
 
     random_number = random.randint(1, 100)
     cumulative_percentage = 0
