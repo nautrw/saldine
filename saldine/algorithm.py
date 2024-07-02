@@ -36,7 +36,7 @@ def note_length() -> str:
 
 def generate_notes_list(notes_number: int, add_whole_note_at_end: bool) -> List[dict]:
     if notes_number < 2:
-        exit("The algorithm can only generate with 3 or more notes.")
+        raise ValueError("The algorithm can only generate with 3 or more notes.")
 
     if add_whole_note_at_end:
         notes_number -= 1
