@@ -1,5 +1,4 @@
 import random
-from typing import List
 
 NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
 
@@ -24,8 +23,10 @@ def note_length() -> str:
     return random.choices(NOTE_LENGTHS, weights=NOTE_LENGTH_WEIGHTS)[0]
 
 
-def generate_notes_list(notes_number: int, add_whole_note_at_end: bool) -> List[dict]:
-    if notes_number < 2:
+def generate_notes_list(
+    notes_number: int, add_whole_note_at_end: bool
+) -> list[dict[str, int | str]]:
+    if notes_number < 3:
         raise ValueError("The algorithm can only generate with 3 or more notes.")
 
     if add_whole_note_at_end:
@@ -40,13 +41,13 @@ def generate_notes_list(notes_number: int, add_whole_note_at_end: bool) -> List[
         }
     ]
 
-    for _ in range(notes_number):
-        previous_note = notes_list[-1]
+    previous_note = notes_list[-1]
 
+    for _ in range(notes_number):
         notes_list.append(
             {
                 "number": interval(
-                    previous_note["number"], random.choice([True, False])
+                    int(previous_note["number"]), random.choice([True, False])
                 ),
                 "length": note_length(),
             }
@@ -54,7 +55,9 @@ def generate_notes_list(notes_number: int, add_whole_note_at_end: bool) -> List[
 
     if add_whole_note_at_end:
         new_note_dict = {
-            "number": interval(notes_list[-1]["number"], random.choice([True, False])),
+            "number": interval(
+                int(previous_note["number"]), random.choice([True, False])
+            ),
             "length": "whole",
         }
         notes_list.append(new_note_dict)
