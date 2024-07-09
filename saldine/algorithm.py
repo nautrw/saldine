@@ -29,10 +29,9 @@ def generate_notes_list(
     if notes_number < 3:
         raise ValueError("The algorithm can only generate with 3 or more notes.")
 
-    if add_whole_note_at_end:
-        notes_number -= 1
-
-    notes_number -= 1  # accommodating for the beginning note
+    notes_number -= (
+        2 if add_whole_note_at_end else 1
+    )  # accommodating for the beginning note and note at end
 
     notes_list = [
         {
