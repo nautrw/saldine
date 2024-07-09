@@ -7,7 +7,7 @@ NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
 INTERVALS = [1, 0, 3, 6, 5, 4, 8]
 INTERVAL_WEIGHTS = [50, 25, 11.25, 4.5, 4.5, 2.25, 2.5]
 
-NOTE_LENGTHS = ["whole", "half", "dottedhalf", "quarter", "eighth"]
+NOTE_LENGTHS = [1, 2, 3, 4, 8]
 NOTE_LENGTH_WEIGHTS = [2.5, 12.5, 10, 62.5, 12.5]
 
 
@@ -25,7 +25,7 @@ class Note:
     """
 
     number: int
-    length: str
+    length: int
 
 
 def interval(note_number: int, go_down: bool) -> int:
@@ -48,7 +48,7 @@ def interval(note_number: int, go_down: bool) -> int:
     return (note_number % 7) or 7
 
 
-def note_length() -> str:
+def note_length() -> int:
     """
     Returns a randomly selected note length based on predefined weights.
 
@@ -87,6 +87,6 @@ def generate_notes_list(notes_number: int, add_whole_note_at_end: bool) -> list[
     )
 
     if add_whole_note_at_end:
-        notes_list[-1].length = "whole"
+        notes_list[-1].length = 1
 
     return notes_list
