@@ -1,4 +1,5 @@
 import random
+from dataclasses import dataclass
 
 NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
 
@@ -10,10 +11,12 @@ NOTE_LENGTHS = ["whole", "half", "dottedhalf", "quarter", "eighth"]
 NOTE_LENGTH_WEIGHTS = [2.5, 12.5, 10, 62.5, 12.5]
 
 
+@dataclass
 class Note:
-    def __init__(self, number: int, length: str) -> None:
-        self.number = number
-        self.length = length
+    """The class of a note"""
+
+    number: int
+    length: str
 
 
 def interval(note_number: int, go_down: bool) -> int:
