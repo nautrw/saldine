@@ -29,10 +29,6 @@ def generate_notes_list(
     if notes_number < 3:
         raise ValueError("The algorithm can only generate with 3 or more notes.")
 
-    notes_number -= (
-        2 if add_whole_note_at_end else 1
-    )  # accommodating for the beginning note and note at end
-
     notes_list = [
         {
             "number": interval(random.randint(1, 7), random.choice([True, False])),
@@ -49,16 +45,10 @@ def generate_notes_list(
             ),
             "length": note_length(),
         }
-        for _ in range(notes_number)
+        for _ in range(notes_number - 1)
     )
 
     if add_whole_note_at_end:
-        new_note_dict = {
-            "number": interval(
-                int(previous_note["number"]), random.choice([True, False])
-            ),
-            "length": "whole",
-        }
-        notes_list.append(new_note_dict)
+        previous_note["length"] = "whole"
 
     return notes_list
