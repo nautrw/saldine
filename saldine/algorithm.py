@@ -42,15 +42,15 @@ def generate_notes_list(
 
     previous_note = notes_list[-1]
 
-    for _ in range(notes_number):
-        notes_list.append(
-            {
-                "number": interval(
-                    int(previous_note["number"]), random.choice([True, False])
-                ),
-                "length": note_length(),
-            }
-        )
+    notes_list.extend(
+        {
+            "number": interval(
+                int(previous_note["number"]), random.choice([True, False])
+            ),
+            "length": note_length(),
+        }
+        for _ in range(notes_number)
+    )
 
     if add_whole_note_at_end:
         new_note_dict = {
