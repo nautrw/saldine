@@ -78,16 +78,13 @@ def generate_notes_list(notes_number: int, add_whole_note_at_end: bool) -> list[
 
     notes_list = [Note(number=random.randint(1, 7), length=note_length())]
 
-    previous_note = notes_list[-1]
-
-    for _ in range(notes_number - 1):
-        notes_list.append(
-            Note(
-                number=interval(previous_note.number, random.choice([True, False])),
-                length=note_length(),
-            )
+    notes_list.extend(
+        Note(
+            number=interval(notes_list[-1].number, random.choice([True, False])),
+            length=note_length(),
         )
-        previous_note = notes_list[-1]
+        for _ in range(notes_number - 1)
+    )
 
     if add_whole_note_at_end:
         notes_list[-1].length = "whole"
