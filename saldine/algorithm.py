@@ -10,6 +10,12 @@ NOTE_LENGTHS = ["whole", "half", "dottedhalf", "quarter", "eighth"]
 NOTE_LENGTH_WEIGHTS = [2.5, 12.5, 10, 62.5, 12.5]
 
 
+class Note:
+    def __init__(self, number: int, length: str) -> None:
+        self.number = number
+        self.length = length
+
+
 def interval(note_number: int, go_down: bool) -> int:
     interval = random.choices(INTERVALS, weights=INTERVAL_WEIGHTS)[0]
 
@@ -23,32 +29,24 @@ def note_length() -> str:
     return random.choices(NOTE_LENGTHS, weights=NOTE_LENGTH_WEIGHTS)[0]
 
 
-def generate_notes_list(
-    notes_number: int, add_whole_note_at_end: bool
-) -> list[dict[str, int | str]]:
+def generate_notes_list(notes_number: int, add_whole_note_at_end: bool) -> list[Note]:
     if notes_number < 3:
         raise ValueError("The algorithm can only generate with 3 or more notes.")
 
-    notes_list = [
-        {
-            "number": interval(random.randint(1, 7), random.choice([True, False])),
-            "length": note_length(),
-        }
-    ]
+    notes_list = [Note(number=random.randint(1, 7), length=note_length())]
 
     previous_note = notes_list[-1]
 
-    notes_list.extend(
-        {
-            "number": interval(
-                int(previous_note["number"]), random.choice([True, False])
-            ),
-            "length": note_length(),
-        }
-        for _ in range(notes_number - 1)
-    )
+    for _ in range(notes_number - 1):
+        notes_list.append(
+            Note(
+                number=interval(previous_note.number, random.choice([True, False])),
+                length=note_length(),
+            )
+        )
+        previous_note = notes_list[-1]
 
     if add_whole_note_at_end:
-        previous_note["length"] = "whole"
+        notes_list[-1].length = "whole"
 
     return notes_list
