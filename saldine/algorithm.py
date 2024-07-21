@@ -1,8 +1,6 @@
 import random
 from dataclasses import dataclass
 
-NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
-
 # step, unison, third, sixth, fifth, fourth, octave
 INTERVALS = [1, 0, 3, 6, 5, 4, 8]
 INTERVAL_WEIGHTS = [50, 25, 11.25, 4.5, 4.5, 2.25, 2.5]

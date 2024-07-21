@@ -3,6 +3,8 @@ import sys
 
 from saldine.algorithm import Note, generate_notes_list
 
+NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
+
 
 def hard_exit(signal, frame) -> None:
     """
@@ -37,7 +39,7 @@ def ask_run_again() -> None:
 
 
 def parse_notes(notes: list[Note]) -> str:
-    return " ".join(f"{note.number}:{note.length}" for note in notes)
+    return " ".join(f"{NOTES[note.number]}:{note.length}" for note in notes)
 
 
 def main() -> None:
