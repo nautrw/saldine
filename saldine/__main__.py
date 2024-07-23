@@ -1,8 +1,8 @@
 import signal
 import sys
 
-from saldine.algorithm import Note, generate_notes_list
-
+from saldine.algorithm import Note, generate_notes_list\
+    
 NOTES = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G"}
 
 
